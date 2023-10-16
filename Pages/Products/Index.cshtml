@@ -1,0 +1,34 @@
+@page
+@model eCom_EF_Core.Pages_Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/product-list.css"> <!-- Link to your custom CSS file -->
+
+<h1>Product List</h1>
+
+<div class="row">
+    @foreach (var product in Model.Product)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <!-- Display the product image -->
+                <img src="@Url.Content(product.ImgUrl)" class="card-img-top" alt="Product Image" />
+
+                <div class="card-body">
+                    <!-- Display the product title -->
+                    <h5 class="card-title">@product.Name</h5>
+
+                    <!-- Add a button to navigate to the product details page -->
+                    <a asp-page="./Details" asp-route-id="@product.Id" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    <a asp-page="Create" class="btn btn-success">Create New Product</a>
+</div>
